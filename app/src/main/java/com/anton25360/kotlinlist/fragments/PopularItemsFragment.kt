@@ -1,16 +1,16 @@
 package com.anton25360.kotlinlist.fragments
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.anton25360.kotlinlist.R
+import com.anton25360.kotlinlist.fragments.adapters.MainAdapter
 import kotlinx.android.synthetic.main.fragment_popular_items.*
 import okhttp3.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 
@@ -31,37 +31,36 @@ class PopularItemsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val words = arrayOf("one", "two", "three")
-        piList.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, words)
+
+        popular_item_recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        popular_item_recyclerView.adapter = MainAdapter()
 
 
         fetchJSon()
 
-//        Log.d(TAG, apiResponse)
-
-    }
-
-    fun populateList(){
-        Log.d(TAG, "populating listView...")
-        val words = arrayOf("one", "two", "three")
-
-        for (word in words) {
-            Log.d(TAG, "populateList: $word")
-        }
     }
 
     fun fetchJSon(){
 
         val url = "https://popular-items.azurewebsites.net/popular_items.json"
         val request = Request.Builder().url(url).build()
-
         val client = OkHttpClient()
-        client.newCall(request).enqueue(object : Callback {
 
+        client.newCall(request).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
-                val body = response.body?.string()
-//                val jsonObject = JSONObject(body)
-                println(body)
+                val data: String? = response.body?.string() //response as a string
+                val jsonArray = JSONArray(data) //convert to json array
+                val availableItems = arrayListOf<Any>() //create empty array to store items that are 'available'
+
+                //loop through original json array:
+                for (i in 0 until jsonArray.length()) {
+                    val item = jsonArray.getJSONObject(i)
+
+                    if (item.get("available") == "yes"){ //if item is available
+                        availableItems.add(item.get("item_name")) //add it to the array
+                    }
+                }
+                println(availableItems)
 
             }
 
@@ -71,3 +70,4 @@ class PopularItemsFragment : Fragment() {
         })
     }
 }
+
