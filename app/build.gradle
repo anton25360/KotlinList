@@ -1,8 +1,9 @@
+//apply plugin: 'kotlin-android-extensions'
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
 //    apply plugin: 'kotlin-android-extensions'
-    id "org.jetbrains.kotlin.android.extensions"
+    id "kotlin-android-extensions"
 
 
 
