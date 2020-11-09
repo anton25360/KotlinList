@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anton25360.kotlinlist.R
 import kotlinx.android.synthetic.main.popular_item_row.view.*
 
-class MainAdapter: RecyclerView.Adapter<CustomViewHolder>() {
+class MainAdapter(val array: ArrayList<Any>): RecyclerView.Adapter<CustomViewHolder>() {
 
-    val words = arrayOf("one", "two", "three")
+//    val words = arrayOf("one", "two", "three")
 
     override fun getItemCount(): Int {
-        return words.size
+        return array.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
@@ -22,7 +22,7 @@ class MainAdapter: RecyclerView.Adapter<CustomViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        holder.view.popular_item_textView.text = words[position]
+        holder.view.popular_item_textView.text = array[position] as CharSequence?
     }
 }
 
