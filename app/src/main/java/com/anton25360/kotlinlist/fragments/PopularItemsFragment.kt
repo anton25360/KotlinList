@@ -13,33 +13,33 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.anton25360.kotlinlist.R
 import kotlinx.android.synthetic.main.fragment_popular_items.*
+import okhttp3.*
+import java.io.IOException
+import java.net.URL
 
 class PopularItemsFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        populateList()
-//        val words = arrayOf("one", "two", "three")
-//        piList.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1,words)
-
-
-
     }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_popular_items, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
         val words = arrayOf("one", "two", "three")
         piList.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1,words)
+
+
+        fetchJSon()
+
+//        Log.d(TAG, apiResponse)
 
     }
 
@@ -52,4 +52,22 @@ class PopularItemsFragment : Fragment() {
         }
     }
 
+    fun fetchJSon(){
+
+        val url = "https://popular-items.azurewebsites.net/popular_items.json"
+        val request = Request.Builder().url(url).build()
+
+        val client = OkHttpClient()
+        client.newCall(request).enqueue(object : Callback {
+
+            override fun onResponse(call: Call, response: Response) {
+                val body = response.body?.string()
+                println(body)
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                println("failed to execute request: "+e)
+            }
+        })
+    }
 }
