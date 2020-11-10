@@ -31,6 +31,7 @@ class PopularItemDetailActivity : AppCompatActivity() {
         } else {
             //else, add data to DB
             DatabaseHandler(this).insertDataIntoDB(item.toString(), quantity.toInt())
+            popular_item_detail_inputField.text.clear()
         }
     }
 }
