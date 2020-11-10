@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.anton25360.kotlinlist.MainActivity2
+import com.anton25360.kotlinlist.PopularItemDetailActivity
 import com.anton25360.kotlinlist.R
 import com.anton25360.kotlinlist.adapters.OnItemClickListener
 import com.anton25360.kotlinlist.adapters.PopularItemsAdapter
@@ -77,9 +77,10 @@ class PopularItemsFragment : Fragment(), OnItemClickListener {
         openDetailFragment(clickedItem)
     }
 
-    private fun openDetailFragment(item: Any) {
-//        Intent intent = new Intent(this, PopularItemDetailFragment.)
-        val intent = Intent(requireContext(), MainActivity2::class.java)
+    private fun openDetailFragment(item:Any) {
+        val intent = Intent(requireContext(), PopularItemDetailActivity::class.java)
+        val chosenItem = arrayListOf<Any>(item)
+        intent.putExtra("chosenItem",chosenItem)
         startActivity(intent)
 
     }
