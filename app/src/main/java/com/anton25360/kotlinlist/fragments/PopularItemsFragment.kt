@@ -5,19 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-//import androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
-import com.anton25360.kotlinlist.MainActivity
 import com.anton25360.kotlinlist.R
-import com.anton25360.kotlinlist.fragments.adapters.OnItemClickListener
-import com.anton25360.kotlinlist.fragments.adapters.PopularItemsAdapter
+import com.anton25360.kotlinlist.adapters.OnItemClickListener
+import com.anton25360.kotlinlist.adapters.PopularItemsAdapter
 import kotlinx.android.synthetic.main.fragment_popular_items.*
 import okhttp3.*
 import org.json.JSONArray
 import java.io.IOException
-
 
 class PopularItemsFragment : Fragment(), OnItemClickListener {
 
@@ -67,13 +63,12 @@ class PopularItemsFragment : Fragment(), OnItemClickListener {
             }
 
             override fun onFailure(call: Call, e: IOException) {
-                println("failed to execute request: " + e)
+                println(e)
             }
         })
     }
 
     override fun onItemClick(position: Int) {
-//        Toast.makeText(requireContext(), "Item $position clicked", Toast.LENGTH_SHORT).show()
         val clickedItem = availableItems[position]
         Toast.makeText(requireContext(), "you just clicked $clickedItem", Toast.LENGTH_SHORT).show()
 //        popular_item_recyclerView.adapter?.notifyItemChanged(position)

@@ -1,4 +1,4 @@
-package com.anton25360.kotlinlist.fragments.adapters
+package com.anton25360.kotlinlist.adapters
 
 import android.view.LayoutInflater
 import android.view.View

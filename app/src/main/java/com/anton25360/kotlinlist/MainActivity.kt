@@ -5,7 +5,7 @@ import android.os.StrictMode
 import androidx.appcompat.app.AppCompatActivity
 import com.anton25360.kotlinlist.fragments.PopularItemsFragment
 import com.anton25360.kotlinlist.fragments.ShoppingListFragment
-import com.anton25360.kotlinlist.fragments.adapters.ViewPagerAdapter
+import com.anton25360.kotlinlist.adapters.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 

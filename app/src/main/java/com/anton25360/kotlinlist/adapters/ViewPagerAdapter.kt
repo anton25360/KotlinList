@@ -1,4 +1,4 @@
-package com.anton25360.kotlinlist.fragments.adapters
+package com.anton25360.kotlinlist.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
