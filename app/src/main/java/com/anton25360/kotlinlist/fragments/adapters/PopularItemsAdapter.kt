@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anton25360.kotlinlist.R
 import kotlinx.android.synthetic.main.popular_item_row.view.*
 
-class MainAdapter(val array: ArrayList<Any>): RecyclerView.Adapter<CustomViewHolder>() {
+class PopularItemsAdapter(val array: ArrayList<Any>, val listener: OnItemClickListener): RecyclerView.Adapter<CustomViewHolder>() {
 
 //    val words = arrayOf("one", "two", "three")
 
@@ -18,7 +18,7 @@ class MainAdapter(val array: ArrayList<Any>): RecyclerView.Adapter<CustomViewHol
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val layoutInflater = LayoutInflater.from(parent?.context)
         val cellForRow = layoutInflater.inflate(R.layout.popular_item_row, parent, false)
-        return CustomViewHolder(cellForRow)
+        return CustomViewHolder(cellForRow, listener)
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
@@ -26,6 +26,23 @@ class MainAdapter(val array: ArrayList<Any>): RecyclerView.Adapter<CustomViewHol
     }
 }
 
-class CustomViewHolder(val view: View): RecyclerView.ViewHolder(view) {
+class CustomViewHolder(val view: View, val listener: OnItemClickListener): RecyclerView.ViewHolder(view),
+View.OnClickListener{
+    init {
+        view.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        //gets position of item
+        val position: Int = adapterPosition
+        if (position != RecyclerView.NO_POSITION) { //ensure the position is valid
+            listener.onItemClick(position)
+        }
+    }
+}
+
+interface  OnItemClickListener {
+    fun onItemClick(position: Int)
+
 
 }
