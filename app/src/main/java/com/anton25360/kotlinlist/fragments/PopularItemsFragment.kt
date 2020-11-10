@@ -1,5 +1,6 @@
 package com.anton25360.kotlinlist.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.anton25360.kotlinlist.MainActivity2
 import com.anton25360.kotlinlist.R
 import com.anton25360.kotlinlist.adapters.OnItemClickListener
 import com.anton25360.kotlinlist.adapters.PopularItemsAdapter
@@ -72,6 +74,16 @@ class PopularItemsFragment : Fragment(), OnItemClickListener {
         val clickedItem = availableItems[position]
         Toast.makeText(requireContext(), "you just clicked $clickedItem", Toast.LENGTH_SHORT).show()
 //        popular_item_recyclerView.adapter?.notifyItemChanged(position)
+        openDetailFragment(clickedItem)
     }
+
+    private fun openDetailFragment(item: Any) {
+//        Intent intent = new Intent(this, PopularItemDetailFragment.)
+        val intent = Intent(requireContext(), MainActivity2::class.java)
+        startActivity(intent)
+
+    }
+
+
 }
 

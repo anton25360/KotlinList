@@ -12,7 +12,16 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-<!--        <item name="elevation">0dp</item>-->
+        <!--        <item name="elevation">0dp</item>-->
 
     </style>
+
+    <style name="Theme.KotlinList.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.KotlinList.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.KotlinList.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -43,6 +43,4 @@ View.OnClickListener{
 
 interface  OnItemClickListener {
     fun onItemClick(position: Int)
-
-
 }
