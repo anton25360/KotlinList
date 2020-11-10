@@ -23,22 +23,14 @@ class PopularItemDetailActivity : AppCompatActivity() {
     fun addToDB(view: View) {
         val dataFromIntent = intent.getStringArrayListExtra("chosenItem") //data from intent
         val item = dataFromIntent?.get(0) //get the name of the clicked item
-        val quantity = popular_item_detail_inputField.text.toString()
+        val quantity = popular_item_detail_inputField.text.toString() //number entered
 
         //if input is null or 0, show error message
         if (popular_item_detail_inputField.length() == 0 || quantity == "0"){
             popular_item_detail_inputField.setError("Must not be empty")
         } else {
             //else, add data to DB
-            Toast.makeText(this, "Add $item x $quantity", Toast.LENGTH_SHORT).show()
-
-            var name: String = "Tomatoes"
-            var quantity: Int = 10
-//            var item: Item(name, quantity)
-//            var db = DatabaseHandler(this)
-//            db.insertData(item)
-            DatabaseHandler(this).insertDataIntoDB("BOB", 10)
-
+            DatabaseHandler(this).insertDataIntoDB(item.toString(), quantity.toInt())
         }
     }
 }

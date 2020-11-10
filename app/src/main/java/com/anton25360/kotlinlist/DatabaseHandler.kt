@@ -35,10 +35,10 @@ class DatabaseHandler (var context: Context) :SQLiteOpenHelper(context, "db", nu
         cv.put(COLUMN_QUANTITY, amount)
         val result = db.insert(TABLE_NAME, null, cv)
 
-//        Toast.makeText(context, "DONE", Toast.LENGTH_SHORT).show()
         if (result == -1.toLong())
             Toast.makeText(context, "Failed, please try again", Toast.LENGTH_SHORT).show()
         else
-            Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Added $amount $name to DB", Toast.LENGTH_SHORT).show()
     }
 }
