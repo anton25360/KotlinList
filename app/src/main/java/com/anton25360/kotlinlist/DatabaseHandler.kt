@@ -49,10 +49,10 @@ class DatabaseHandler (var context: Context) :SQLiteOpenHelper(context, "db", nu
         val result = db.rawQuery(query, null)
         if (result.moveToFirst()) { //returns true if cursor is not null
             do {
-                var item = Item()
-                item.name = result.getString(result.getColumnIndex(COLUMN_NAME))
-                item.quantity = result.getString(result.getColumnIndex(COLUMN_QUANTITY)).toInt()
-                list.add(item)
+                var name = result.getString(result.getColumnIndex(COLUMN_NAME))
+                var quantity = result.getString(result.getColumnIndex(COLUMN_QUANTITY)).toInt()
+                var innerArray = arrayListOf<Any>(name,quantity)
+                list.add(innerArray)
             }while ( result.moveToNext())
         }
 
