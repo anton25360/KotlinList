@@ -12,7 +12,7 @@ const val TABLE_NAME = "shoppingList"
 const val COLUMN_NAME = "name"
 const val COLUMN_QUANTITY = "quantity"
 
-class DatabaseHandler (var context: Context) :SQLiteOpenHelper(context, "db", null, 1) {
+class DatabaseHandler(var context: Context) :SQLiteOpenHelper(context, "db", null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable = "CREATE TABLE " +
                 TABLE_NAME + " (" +
@@ -27,8 +27,7 @@ class DatabaseHandler (var context: Context) :SQLiteOpenHelper(context, "db", nu
         onCreate(db)
     }
 
-
-    fun insertDataIntoDB(name:String, amount:Int){
+    fun insertDataIntoDB(name: String, amount: Int){
         val db = this.writableDatabase
         val cv = ContentValues()
         cv.put(COLUMN_NAME, name)
@@ -51,17 +50,22 @@ class DatabaseHandler (var context: Context) :SQLiteOpenHelper(context, "db", nu
             do {
                 val name = result.getString(result.getColumnIndex(COLUMN_NAME))
                 val quantity = result.getString(result.getColumnIndex(COLUMN_QUANTITY)).toInt()
-                val innerArray = arrayListOf<Any>(name,quantity)
+                val innerArray = arrayListOf<Any>(name, quantity)
                 list.add(innerArray)
             }while ( result.moveToNext())
         }
 
         result.close() //close cursor
-        db.close() //close sursor
+        db.close() //close cursor
         return list
     }
 
-    fun deleteDataFromDB(){
-        Toast.makeText(this.context, "deleted something?", Toast.LENGTH_SHORT).show()
+    fun deleteDataFromDB(position: Int){
+        val data = readDataFromDB()
+        val item:ArrayList<Any> = data[position] as ArrayList<Any>
+        val name = item.first().toString()
+        val db = this.readableDatabase
+        db.execSQL("DELETE FROM $TABLE_NAME WHERE $COLUMN_NAME='$name'")
+        db.close()
     }
 }

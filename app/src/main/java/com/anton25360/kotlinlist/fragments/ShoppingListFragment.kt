@@ -42,9 +42,7 @@ class ShoppingListFragment : Fragment(), OnItemClickListener2 {
     }
 
     override fun onItemClick(position: Int) {
-
-        Toast.makeText(requireContext(), "helo", Toast.LENGTH_SHORT).show()
+        DatabaseHandler(requireContext()).deleteDataFromDB(position)
+        shopping_list_recyclerView.adapter?.notifyDataSetChanged()
     }
-
-
 }
