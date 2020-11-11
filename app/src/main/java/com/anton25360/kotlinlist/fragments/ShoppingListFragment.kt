@@ -10,10 +10,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anton25360.kotlinlist.DatabaseHandler
 import com.anton25360.kotlinlist.R
+import com.anton25360.kotlinlist.adapters.OnItemClickListener
+import com.anton25360.kotlinlist.adapters.OnItemClickListener2
 import com.anton25360.kotlinlist.adapters.ShoppingListAdapter
 import kotlinx.android.synthetic.main.fragment_shopping_list.*
 
-class ShoppingListFragment : Fragment() {
+class ShoppingListFragment : Fragment(), OnItemClickListener2 {
 
 //    var db = DatabaseHandler(requireContext())
 
@@ -36,7 +38,12 @@ class ShoppingListFragment : Fragment() {
 
     fun populateList() {
         val data = DatabaseHandler(requireContext()).readDataFromDB()
-        shopping_list_recyclerView.adapter = ShoppingListAdapter(data)
+        shopping_list_recyclerView.adapter = ShoppingListAdapter(data,this@ShoppingListFragment)
+    }
+
+    override fun onItemClick(position: Int) {
+
+        Toast.makeText(requireContext(), "helo", Toast.LENGTH_SHORT).show()
     }
 
 

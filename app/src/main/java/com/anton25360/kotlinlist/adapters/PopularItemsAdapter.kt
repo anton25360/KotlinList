@@ -9,8 +9,6 @@ import kotlinx.android.synthetic.main.popular_item_row.view.*
 
 class PopularItemsAdapter(val array: ArrayList<Any>, val listener: OnItemClickListener): RecyclerView.Adapter<CustomViewHolder>() {
 
-//    val words = arrayOf("one", "two", "three")
-
     override fun getItemCount(): Int {
         return array.size
     }
