@@ -51,4 +51,9 @@ class ShoppingListFragment : Fragment(), OnItemClickListener2 {
         DatabaseHandler(requireContext()).deleteDataFromDB(position)
         populateList()
     }
+
+    fun testy(): ArrayList<Any> {
+        val data = DatabaseHandler(requireContext()).readDataFromDB()
+        return data
+    }
 }
