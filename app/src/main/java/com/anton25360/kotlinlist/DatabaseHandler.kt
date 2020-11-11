@@ -42,16 +42,16 @@ class DatabaseHandler (var context: Context) :SQLiteOpenHelper(context, "db", nu
             Toast.makeText(context, "Added $amount $name to DB", Toast.LENGTH_SHORT).show()
     }
 
-    fun readDatafromDB() : ArrayList<Any>{
-        var list: ArrayList<Any> = ArrayList()
+    fun readDataFromDB() : ArrayList<Any>{
+        val list: ArrayList<Any> = ArrayList()
         val db = this.readableDatabase
         val query = "Select * from " + TABLE_NAME
         val result = db.rawQuery(query, null)
         if (result.moveToFirst()) { //returns true if cursor is not null
             do {
-                var name = result.getString(result.getColumnIndex(COLUMN_NAME))
-                var quantity = result.getString(result.getColumnIndex(COLUMN_QUANTITY)).toInt()
-                var innerArray = arrayListOf<Any>(name,quantity)
+                val name = result.getString(result.getColumnIndex(COLUMN_NAME))
+                val quantity = result.getString(result.getColumnIndex(COLUMN_QUANTITY)).toInt()
+                val innerArray = arrayListOf<Any>(name,quantity)
                 list.add(innerArray)
             }while ( result.moveToNext())
         }
@@ -59,5 +59,9 @@ class DatabaseHandler (var context: Context) :SQLiteOpenHelper(context, "db", nu
         result.close() //close cursor
         db.close() //close sursor
         return list
+    }
+
+    fun deleteDataFromDB(){
+        Toast.makeText(this.context, "deleted something?", Toast.LENGTH_SHORT).show()
     }
 }

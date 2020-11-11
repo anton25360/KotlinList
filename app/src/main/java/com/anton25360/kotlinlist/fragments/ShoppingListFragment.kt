@@ -35,11 +35,8 @@ class ShoppingListFragment : Fragment() {
     }
 
     fun populateList() {
-        var data = DatabaseHandler(requireContext()).readDatafromDB()
-        println(data)
-//        shopping_list_recyclerView.adapter = ShoppingListAdapter(data)
-        Toast.makeText(requireContext(), "$data", Toast.LENGTH_SHORT).show()
-
+        val data = DatabaseHandler(requireContext()).readDataFromDB()
+        shopping_list_recyclerView.adapter = ShoppingListAdapter(data)
     }
 
 
