@@ -43,6 +43,6 @@ class ShoppingListFragment : Fragment(), OnItemClickListener2 {
 
     override fun onItemClick(position: Int) {
         DatabaseHandler(requireContext()).deleteDataFromDB(position)
-        shopping_list_recyclerView.adapter?.notifyDataSetChanged()
+        populateList()
     }
 }
