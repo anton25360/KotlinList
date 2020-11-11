@@ -36,6 +36,12 @@ class ShoppingListFragment : Fragment(), OnItemClickListener2 {
         populateList()
     }
 
+    override fun onResume() {
+        super.onResume()
+        populateList()
+    }
+
+
     fun populateList() {
         val data = DatabaseHandler(requireContext()).readDataFromDB()
         shopping_list_recyclerView.adapter = ShoppingListAdapter(data,this@ShoppingListFragment)

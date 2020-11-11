@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.anton25360.kotlinlist.fragments.ShoppingListFragment
 import kotlinx.android.synthetic.main.activity_popular_item_detail.*
 
 class PopularItemDetailActivity : AppCompatActivity() {
@@ -19,7 +20,6 @@ class PopularItemDetailActivity : AppCompatActivity() {
 //        popular_item_detail_button.setOnClickListener {toastMe()} //run function on btn click
     }
 
-
     fun addToDB(view: View) {
         val dataFromIntent = intent.getStringArrayListExtra("chosenItem") //data from intent
         val item = dataFromIntent?.get(0) //get the name of the clicked item
@@ -29,9 +29,11 @@ class PopularItemDetailActivity : AppCompatActivity() {
         if (popular_item_detail_inputField.length() == 0 || quantity == "0"){
             popular_item_detail_inputField.setError("Must not be empty")
         } else {
-            //else, add data to DB
+            //else, add data to DB and refresh shopping list adapter
             DatabaseHandler(this).insertDataIntoDB(item.toString(), quantity.toInt())
             popular_item_detail_inputField.text.clear()
+//            ShoppingListFragment().populateList()
+
         }
     }
 }
