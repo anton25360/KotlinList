@@ -2,7 +2,6 @@ package com.anton25360.kotlinlist
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns._ID
@@ -13,18 +12,19 @@ const val TABLE_NAME = "shoppingList"
 const val COLUMN_NAME = "name"
 const val COLUMN_QUANTITY = "quantity"
 
+@Suppress("UNCHECKED_CAST")
 class DatabaseHandler(var context: Context) :SQLiteOpenHelper(context, "db", null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable = "CREATE TABLE " +
                 TABLE_NAME + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_NAME + " TEXT NOT NULL, " +
-                COLUMN_QUANTITY + " INTEGER NOT NULL );";
+                COLUMN_QUANTITY + " INTEGER NOT NULL );"
         db?.execSQL(createTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
-        db?.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME)
+        db?.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
         onCreate(db)
     }
 
@@ -35,11 +35,11 @@ class DatabaseHandler(var context: Context) :SQLiteOpenHelper(context, "db", nul
         cv.put(COLUMN_QUANTITY, amount)
         val result = db.insert(TABLE_NAME, null, cv)
 
-        if (result == -1.toLong())
+        if (result == (-1).toLong())
             Toast.makeText(context, "Failed, please try again", Toast.LENGTH_SHORT).show()
         else
 //            Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
-            Toast.makeText(context, "Added $amount $name to DB", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
     }
 
     fun readDataFromDB() : ArrayList<Any>{

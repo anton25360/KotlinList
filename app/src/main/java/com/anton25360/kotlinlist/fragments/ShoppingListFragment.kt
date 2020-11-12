@@ -14,8 +14,10 @@ import com.anton25360.kotlinlist.ShoppingListNewItemActivity
 import com.anton25360.kotlinlist.adapters.OnItemClickListener2
 import com.anton25360.kotlinlist.adapters.ShoppingListAdapter
 import kotlinx.android.synthetic.main.fragment_shopping_list.*
+import java.util.*
 import kotlin.collections.ArrayList
 
+@Suppress("UNCHECKED_CAST")
 class ShoppingListFragment : Fragment(), OnItemClickListener2 {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +52,7 @@ class ShoppingListFragment : Fragment(), OnItemClickListener2 {
                     val stringInDBPlusAmount: ArrayList<Any> = itemCompare as ArrayList<Any> //item from the db
                     val stringInDB: String = stringInDBPlusAmount[0] as String //string from the item
 
-                    if (stringInDB.toLowerCase().indexOf(query.toString().toLowerCase()) != -1) { //if searched string is in db (eg: ST in STEAK) then put STEAK in arrayOfResults
+                    if (stringInDB.toLowerCase(Locale.ROOT).indexOf(query.toString().toLowerCase(Locale.ROOT)) != -1) { //if searched string is in db (eg: ST in STEAK) then put STEAK in arrayOfResults
                         arrayOfResults.add(stringInDBPlusAmount) //put STEAK in arrayOfResults
                     }
                 }
@@ -71,7 +73,7 @@ class ShoppingListFragment : Fragment(), OnItemClickListener2 {
         populateList()
     }
 
-    fun populateList() {
+    private fun populateList() {
         val data = DatabaseHandler(requireContext()).readDataFromDB()
         shopping_list_recyclerView.adapter = ShoppingListAdapter(data,this@ShoppingListFragment)
     }

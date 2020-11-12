@@ -14,7 +14,7 @@ class PopularItemsAdapter(val array: ArrayList<Any>, val listener: OnItemClickLi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
-        val layoutInflater = LayoutInflater.from(parent?.context)
+        val layoutInflater = LayoutInflater.from(parent.context)
         val cellForRow = layoutInflater.inflate(R.layout.popular_item_row, parent, false)
         return CustomViewHolder(cellForRow, listener)
     }

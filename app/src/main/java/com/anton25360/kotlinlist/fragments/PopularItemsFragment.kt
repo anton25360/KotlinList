@@ -20,10 +20,6 @@ class PopularItemsFragment : Fragment(), OnItemClickListener {
 
     val availableItems = arrayListOf<Any>() //create empty array to store items that are 'available'
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +33,7 @@ class PopularItemsFragment : Fragment(), OnItemClickListener {
         fetchJSon() //get data and populate list
     }
 
-    fun fetchJSon(){
+    private fun fetchJSon(){
 
         //values
         val url = "https://popular-items.azurewebsites.net/popular_items.json"
@@ -57,9 +53,9 @@ class PopularItemsFragment : Fragment(), OnItemClickListener {
                     }
                 }
 
-                activity?.runOnUiThread(Runnable {
+                activity?.runOnUiThread {
                     popular_item_recyclerView.adapter = PopularItemsAdapter(availableItems, this@PopularItemsFragment)
-                })
+                }
 
             }
 
@@ -76,7 +72,7 @@ class PopularItemsFragment : Fragment(), OnItemClickListener {
 
     private fun openDetailFragment(item:Any) {
         val intent = Intent(requireContext(), PopularItemDetailActivity::class.java)
-        val chosenItem = arrayListOf<Any>(item)
+        val chosenItem = arrayListOf(item)
         intent.putExtra("chosenItem",chosenItem)
         startActivity(intent)
 

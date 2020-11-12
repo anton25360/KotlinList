@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_shopping_list_new_item.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ShoppingListNewItemActivity : AppCompatActivity() {
 
@@ -13,7 +15,7 @@ class ShoppingListNewItemActivity : AppCompatActivity() {
     }
 
     fun addToDB(view:View) {
-        val name = shopping_list_new_item_inputName.text.toString().capitalize() //name entered
+        val name = shopping_list_new_item_inputName.text.toString().capitalize(Locale.ROOT) //name entered
         val quantity = shopping_list_new_item_inputAmount.text.toString() //number entered
 
         //checks for duplicate in db
