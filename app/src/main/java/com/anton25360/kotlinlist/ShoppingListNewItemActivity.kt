@@ -2,14 +2,8 @@ package com.anton25360.kotlinlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-import com.anton25360.kotlinlist.fragments.ShoppingListFragment
-import kotlinx.android.synthetic.main.activity_popular_item_detail.*
 import kotlinx.android.synthetic.main.activity_shopping_list_new_item.*
-import kotlin.math.log
 
 class ShoppingListNewItemActivity : AppCompatActivity() {
 
@@ -18,8 +12,8 @@ class ShoppingListNewItemActivity : AppCompatActivity() {
         setContentView(R.layout.activity_shopping_list_new_item)
     }
 
-    fun addToDB(view: View) {
-        val name = shopping_list_new_item_inputName.text.toString() //name entered
+    fun addToDB() {
+        val name = shopping_list_new_item_inputName.text.toString().capitalize() //name entered
         val quantity = shopping_list_new_item_inputAmount.text.toString() //number entered
 
         //checks for duplicate in db
