@@ -13,4 +13,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="quantity">Quantity</string>
     <string name="add_to_shopping_list">Add to Shopping List</string>
+    <string name="name">Name</string>
 </resources>
