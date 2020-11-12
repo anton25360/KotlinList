@@ -68,6 +68,7 @@ class ShoppingListFragment : Fragment(), OnItemClickListener2 {
             }
 
         })
+
     }
 
     override fun onResume() {
