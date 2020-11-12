@@ -14,7 +14,7 @@ class ShoppingListNewItemActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_popular_item_detail)
+        setContentView(R.layout.activity_shopping_list_new_item)
 
         val dataFromIntent = intent.getStringArrayListExtra("chosenItem") //data from intent
         val item = dataFromIntent?.get(0) //get the name of the clicked item
