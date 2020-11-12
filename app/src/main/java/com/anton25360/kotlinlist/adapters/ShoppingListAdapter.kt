@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.shopping_list_row.view.*
 
 class ShoppingListAdapter(val array: ArrayList<Any>, val listener: OnItemClickListener2): RecyclerView.Adapter<CustomViewHolder2>() {
 
+    val arrayCopy = array.toMutableList()
+
     override fun getItemCount(): Int {
         return array.size
     }
