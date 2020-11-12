@@ -22,15 +22,6 @@ class PopularItemDetailActivity : AppCompatActivity() {
 
     }
 
-    fun checkIfNameExists(name:String) {
-        val arrayOfTruth = ArrayList<Any>()
-        val data :ArrayList<Any> = DatabaseHandler(this).readDataFromDB()
-        for (item in data){
-            val bool = name in item.toString()
-            arrayOfTruth.add(bool)
-        }
-    }
-
     fun addToDB(view: View) {
         val dataFromIntent = intent.getStringArrayListExtra("chosenItem") //data from intent
         val item = dataFromIntent?.get(0) //get the name of the clicked item
@@ -44,18 +35,15 @@ class PopularItemDetailActivity : AppCompatActivity() {
             arrayOfTruth.add(bool.toString())
         }
 
-        //if input is null or 0, show error message
-        if (popular_item_detail_inputField.length() == 0 || quantity == "0"){
-            popular_item_detail_inputField.setError("Must not be empty")
+        if (popular_item_detail_inputField.length() == 0 || quantity == "0"){ //if input is null or 0, show error message
+            popular_item_detail_inputField.setError("Must not be empty") //set error msg
 
-        } else if (arrayOfTruth.contains("true")) {
-            popular_item_detail_inputField.setError("Already in shopping list!")
-            Toast.makeText(this, "STOP!!!", Toast.LENGTH_SHORT).show()
+        } else if (arrayOfTruth.contains("true")) { //if name already exists in db
+            popular_item_detail_inputField.setError("Already in shopping list!") //set error msg
 
-        }else {
-                //else, add data to DB and refresh shopping list adapter
-                DatabaseHandler(this).insertDataIntoDB(item.toString(), quantity.toInt())
-                popular_item_detail_inputField.text.clear()
+        }else { //else, add data to DB
+                DatabaseHandler(this).insertDataIntoDB(item.toString(), quantity.toInt()) //add to db
+                popular_item_detail_inputField.text.clear() //clear input field
         }
     }
 }

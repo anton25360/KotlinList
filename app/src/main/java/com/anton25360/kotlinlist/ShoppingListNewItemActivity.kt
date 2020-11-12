@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.anton25360.kotlinlist.fragments.ShoppingListFragment
 import kotlinx.android.synthetic.main.activity_popular_item_detail.*
+import kotlinx.android.synthetic.main.activity_shopping_list_new_item.*
 import kotlin.math.log
 
 class ShoppingListNewItemActivity : AppCompatActivity() {
@@ -15,47 +16,34 @@ class ShoppingListNewItemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping_list_new_item)
-
-        val dataFromIntent = intent.getStringArrayListExtra("chosenItem") //data from intent
-        val item = dataFromIntent?.get(0) //get the name of the clicked item
-        popular_item_detail_textView.text = "$item" //set item text
-
-    }
-
-    fun checkIfNameExists(name:String) {
-        val arrayOfTruth = ArrayList<Any>()
-        val data :ArrayList<Any> = DatabaseHandler(this).readDataFromDB()
-        for (item in data){
-            val bool = name in item.toString()
-            arrayOfTruth.add(bool)
-        }
     }
 
     fun addToDB(view: View) {
-        val dataFromIntent = intent.getStringArrayListExtra("chosenItem") //data from intent
-        val item = dataFromIntent?.get(0) //get the name of the clicked item
-        val quantity = popular_item_detail_inputField.text.toString() //number entered
+        val name = shopping_list_new_item_inputName.text.toString() //name entered
+        val quantity = shopping_list_new_item_inputAmount.text.toString() //number entered
 
         //checks for duplicate in db
         val arrayOfTruth = ArrayList<Any>()
         val data :ArrayList<Any> = DatabaseHandler(this).readDataFromDB()
         for (itemCompare in data){
-            val bool = item.toString() in itemCompare.toString()
+            val bool = name in itemCompare.toString()
             arrayOfTruth.add(bool.toString())
         }
 
-        //if input is null or 0, show error message
-        if (popular_item_detail_inputField.length() == 0 || quantity == "0"){
-            popular_item_detail_inputField.setError("Must not be empty")
+        if (shopping_list_new_item_inputAmount.length() == 0 || quantity == "0"){ //if quantity input is empty or the number 0, show error message
+            shopping_list_new_item_inputAmount.setError("Must not be empty") //set error msg
 
-        } else if (arrayOfTruth.contains("true")) {
-            popular_item_detail_inputField.setError("Already in shopping list!")
-            Toast.makeText(this, "STOP!!!", Toast.LENGTH_SHORT).show()
+        }else if (shopping_list_new_item_inputName.length() == 0){ //if name input is empty, show error message
+            shopping_list_new_item_inputName.setError("Must not be empty") //set error msg
 
-        }else {
-                //else, add data to DB and refresh shopping list adapter
-                DatabaseHandler(this).insertDataIntoDB(item.toString(), quantity.toInt())
-                popular_item_detail_inputField.text.clear()
+        } else if (arrayOfTruth.contains("true")) { //if name already exists in db
+            shopping_list_new_item_inputName.setError("Already in shopping list!") //set erorr msg
+
+        } else { //else, add data to DB and refresh shopping list adapter
+                DatabaseHandler(this).insertDataIntoDB(name, quantity.toInt()) //add to db
+                shopping_list_new_item_inputName.text.clear() //clear input
+                shopping_list_new_item_inputAmount.text.clear() //clear input
+                Toast.makeText(this, "close activity now", Toast.LENGTH_SHORT).show()
         }
     }
 }
