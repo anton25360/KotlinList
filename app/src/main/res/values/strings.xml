@@ -14,4 +14,5 @@
     <string name="quantity">Quantity</string>
     <string name="add_to_shopping_list">Add to Shopping List</string>
     <string name="name">Name</string>
+    <string name="new_item">new item</string>
 </resources>

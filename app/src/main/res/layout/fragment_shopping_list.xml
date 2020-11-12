@@ -7,10 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".fragments.PopularItemsFragment">
 
+    <SearchView
+        android:id="@+id/shopping_list_SearchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/shopping_list_recyclerView"
-    android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/shopping_list_SearchView" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shopping_list_FAB"
@@ -19,6 +26,7 @@
         android:layout_margin="10dp"
         android:src="@drawable/ic_baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/new_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
