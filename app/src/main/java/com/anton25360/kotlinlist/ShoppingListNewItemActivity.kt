@@ -3,7 +3,6 @@ package com.anton25360.kotlinlist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_shopping_list_new_item.*
 
 class ShoppingListNewItemActivity : AppCompatActivity() {
@@ -38,7 +37,6 @@ class ShoppingListNewItemActivity : AppCompatActivity() {
                 DatabaseHandler(this).insertDataIntoDB(name, quantity.toInt()) //add to db
                 shopping_list_new_item_inputName.text.clear() //clear input
                 shopping_list_new_item_inputAmount.text.clear() //clear input
-                Toast.makeText(this, "close activity now", Toast.LENGTH_SHORT).show()
         }
     }
 }

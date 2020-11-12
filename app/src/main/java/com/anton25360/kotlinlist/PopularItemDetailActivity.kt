@@ -2,13 +2,8 @@ package com.anton25360.kotlinlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-import com.anton25360.kotlinlist.fragments.ShoppingListFragment
 import kotlinx.android.synthetic.main.activity_popular_item_detail.*
-import kotlin.math.log
 
 class PopularItemDetailActivity : AppCompatActivity() {
 

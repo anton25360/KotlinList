@@ -2,22 +2,18 @@ package com.anton25360.kotlinlist.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anton25360.kotlinlist.DatabaseHandler
-import com.anton25360.kotlinlist.PopularItemDetailActivity
 import com.anton25360.kotlinlist.R
 import com.anton25360.kotlinlist.ShoppingListNewItemActivity
 import com.anton25360.kotlinlist.adapters.OnItemClickListener2
 import com.anton25360.kotlinlist.adapters.ShoppingListAdapter
 import kotlinx.android.synthetic.main.fragment_shopping_list.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class ShoppingListFragment : Fragment(), OnItemClickListener2 {
@@ -55,7 +51,6 @@ class ShoppingListFragment : Fragment(), OnItemClickListener2 {
                     val stringInDB: String = stringInDBPlusAmount[0] as String //string from the item
 
                     if (stringInDB.toLowerCase().indexOf(query.toString().toLowerCase()) != -1) { //if searched string is in db (eg: ST in STEAK) then put STEAK in arrayOfResults
-                        Toast.makeText(requireContext(), "found $query in $stringInDB", Toast.LENGTH_SHORT).show()
                         arrayOfResults.add(stringInDBPlusAmount) //put STEAK in arrayOfResults
                     }
                 }
