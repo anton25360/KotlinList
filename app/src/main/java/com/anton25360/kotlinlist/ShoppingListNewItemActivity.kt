@@ -2,6 +2,7 @@ package com.anton25360.kotlinlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_shopping_list_new_item.*
 
@@ -12,7 +13,7 @@ class ShoppingListNewItemActivity : AppCompatActivity() {
         setContentView(R.layout.activity_shopping_list_new_item)
     }
 
-    fun addToDB() {
+    fun addToDB(view:View) {
         val name = shopping_list_new_item_inputName.text.toString().capitalize() //name entered
         val quantity = shopping_list_new_item_inputAmount.text.toString() //number entered
 
